@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PC兼容性测试</title>
+	<style type="text/css">
+		strong,p{padding: 0;margin: 0;}
+		.c:before,.c:after{content:"";display:table}
+		.c:after{clear:both}
+		.c{zoom:1}
+		.wrap{width: 1000px;margin-left:auto;margin-right:auto;padding:20px 0;}
+			.tit{display: block;line-height: 50px;font-weight: bold;font-size: 20px;background-color: #eeeeee;padding: 0 20px;margin-top: 20px;}
+			.box{padding-top: 20px;}
+				.box-float{float: left;width: 460px;line-height: 32px;background-color: #eeeeee;margin-right: 40px;padding: 10px;display: inline;}
+				.box-float.m-none{margin-right: 0;}
+			.p-txt{margin-top: 20px;line-height: 32px;background-color: #eeeeee;padding: 10px;}
+		*html {
+			background-image: url(about:black);
+			background-attachment: fixed;
+		}
+		.top{
+			position: fixed;
+			width: 100px;
+			height: 300px;
+			background-color: #000000;
+			right: 50px;
+			top: 200px;
+			_position: absolute;
+			_bottom: auto;
+			_top:expression(eval(document.documentElement.scrollTop));
+		}
+
+		/* 最小宽度 */
+		.min_width{
+		    min-width:300px;
+		    _width:expression(parseInt(this.clientWidth) < 300 ? "300px" : this.clientWidth);
+		}
+
+		/* 最大宽度 */
+		.max_width{
+		   max-width:600px;
+		   _width:expression(parseInt(this.clientWidth) > 600 ? "600px" : this.clientWidth);
+		}
+
+		/* 最小高度 */
+		.min_height{
+		   min-height:200px;
+		   _height:expression(parseInt(this.clientHeight) < 200 ? "200px" : this.clientHeight);
+		}
+
+		/* 最大高度 */
+		.max_height{
+		   max-height:400px;
+		   _height:expression(parseInt(this.clientHeight) > 400 ? "400px" : this.clientHeight);
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<strong class="tit">1、ie6横向margin加倍</strong>
+		<div class="box c">
+			<p class="box-float">
+				产生原因：块属性、float、有横向margin
+			</p>
+			<p class="box-float m-none">
+				解决方法：display:inline
+			</p>
+		</div>		
+		<strong class="tit">2、ie6默认有行高</strong>
+		<p class="p-txt">解决方法：overflow:hidden;或font-size:0;或line-height:xx px;</p>
+		<strong class="tit">3、在各个浏览器下img有间隙</strong>
+		<p class="p-txt">解决方法：让图片浮动或者display:block;</p>
+		<strong class="tit">4、一个父标签与几个子标签嵌套，父标签不浮动</strong>
+		<p class="p-txt">解决方法：清除浮动、父标签添加overflow:hidden、给父标签设置高度</p>
+		<strong class="tit">5、opacity定义元素的不透度</strong>
+		<p class="p-txt">
+			filter:alpha(opacity=80);<br>
+			opacity:0.8
+		</p>
+		<strong class="tit">6、竖向margin值不增加</strong>
+		<p class="p-txt">取最大margin值</p>
+		<strong class="tit">7、ie不支持fixed</strong>
+		<div class="top">
+			
+		</div>
+		<strong class="tit">8、解决ie6最大、最小宽高hack方法</strong>
+		<p class="p-txt">最小宽度：<br>
+		_width:expression(parseInt(this.clientWidth) < 300 ? "300px" : this.clientWidth);
+		</p>
+		<p class="p-txt">最大宽度：<br>
+		_width:expression(parseInt(this.clientWidth) > 600 ? "600px" : this.clientWidth);
+		</p>
+		<p class="p-txt">最小高度<br>
+		_height:expression(parseInt(this.clientHeight) < 200 ? "200px" : this.clientHeight);
+		</p>
+		<p class="p-txt">最大高度<br>
+		_height:expression(parseInt(this.clientHeight) > 400 ? "400px" : this.clientHeight);
+		</p>
+		<strong class="tit">9、z-index不起作用的bug</strong>
+		<p class="p-txt">层级的表现有时不在看z-index多高，而要看它们的父标签的
+			z-index谁更高</p>
+		<strong class="tit">10、ie各个版本hack</strong>
+		<p class="p-txt">
+			_width:100px   IE6 <br>
+			*+width:100px  IE7 <br>
+			*width:100px  IE6\7 <br>
+			width:100px\0  IE8\9 <br>
+			width:100px\9  IE6\7\8\9  <br>
+			width:100px\9\0  IE9 <br>
+
+			*html .header{}  IE6 <br>
+			*+html .header{}  IE7
+		</p>
+	</div>
+</body>
+</html>
